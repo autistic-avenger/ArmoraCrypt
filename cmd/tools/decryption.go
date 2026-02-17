@@ -3,8 +3,6 @@ package tools
 import (
 	"armoracrypt/cmd"
 	"fmt"
-	"os"
-	"path/filepath"
 	"github.com/spf13/cobra"
 )
 
