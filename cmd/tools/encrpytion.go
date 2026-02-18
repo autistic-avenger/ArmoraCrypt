@@ -32,16 +32,13 @@ var encrypt = &cobra.Command{
 				fmt.Println("Error Getting Abs Path!")
 				return
 			}
+			absWriteFilePath := filepath.Dir(AbsPath) 
 			cypher, err := internal.Encrypt(AbsPath)
 			if err != nil {
-				fmt.Println(AbsPath)
 				fmt.Println("Error encrypting File!")
 				return
 			}
-			absWriteFilePath, err := filepath.Abs("./!OPERATIONS")
-			if err != nil {
-				fmt.Println("Error abs file")
-			}
+			
 			fmt.Println(absWriteFilePath)
 			joinedFP := filepath.Join(absWriteFilePath, fileInfo.Name())
 			err = os.WriteFile(joinedFP+".crypt", cypher, 0600)

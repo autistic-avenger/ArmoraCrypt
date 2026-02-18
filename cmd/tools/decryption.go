@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-
 	"github.com/spf13/cobra"
 )
 
@@ -33,7 +32,8 @@ var decrypt = &cobra.Command{
 		fileNameLen := len(fileInfo.Name()) - 6
 		fileName := fileInfo.Name()[:fileNameLen]
 		fmt.Println(fileName)		
-		os.WriteFile("./[DECRYPTED]/!OPERATIONS/"+fileName,data,0600)
+		dirPath := filepath.Dir(AbsPath)
+		os.WriteFile(filepath.Join(dirPath,fileName),data,0600)
 	},
 }
 
