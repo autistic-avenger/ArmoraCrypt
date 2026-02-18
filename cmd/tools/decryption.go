@@ -3,6 +3,10 @@ package tools
 import (
 	"armoracrypt/cmd"
 	"armoracrypt/internal"
+	"fmt"
+	"os"
+	"path/filepath"
+
 	"github.com/spf13/cobra"
 )
 
@@ -11,10 +15,29 @@ var decrypt = &cobra.Command{
 	Short: "Decrypts the Files",
 	Long:  "AES256-GCM based encyption that decrypts the Files",
 	Run: func(cmd *cobra.Command, args []string) {
-		internal.Decrypt()
+		fp, err := cmd.Flags().GetString("fp")
+		if err != nil {
+			fmt.Printf("Error getting fp flag for decryption!")
+		}
+		AbsPath, err := filepath.Abs(fp)
+		if err != nil {
+			fmt.Println("Error Getting Abs Path!")
+			return
+		}
+		fileInfo, err := os.Stat(fp)
+		if err != nil {
+			fmt.Println("Not a valid file path for Decryption!")
+			return
+		}
+		data, err := internal.Decrypt(AbsPath)
+		fileNameLen := len(fileInfo.Name()) - 6
+		fileName := fileInfo.Name()[:fileNameLen]
+		fmt.Println(fileName)		
+		os.WriteFile("./[DECRYPTED]/!OPERATIONS/"+fileName,data,0600)
 	},
 }
 
 func init() {
+	decrypt.Flags().String("fp", "", "filePath for decryption")
 	cmd.RootCmd.AddCommand(decrypt)
 }

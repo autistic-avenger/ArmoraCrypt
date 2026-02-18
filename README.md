@@ -11,8 +11,7 @@
 ## TODO
 
 - [x]**Add encryption/decryption functionality**  
-- [ ]**RETHINK THE ARCHITECTURE OF the APP**
-- [ ]**Add Functionality to encrypt multiple files**
-- [ ]**Figure out a way to get it to google drive**
+- [ ]**Add zipping and unzipping to encrypt entire dirs**
+- [ ]**Figure out a way to get it to dropbox**
 - [ ]**Figure out the downloading and decryption system**
 - [ ]**FINISH PROJECT**

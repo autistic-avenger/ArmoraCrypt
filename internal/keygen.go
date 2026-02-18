@@ -19,7 +19,7 @@ func Keygen() {
 	_, err := os.Stat(keyDir)
 	if err == nil {
 		fmt.Println("Master Key [DETECTED]")
-		fmt.Println("Location:",keyDir)
+		fmt.Println("Location:", keyDir)
 		return
 	} else {
 		fmt.Println("Master Key [MISSING]")
