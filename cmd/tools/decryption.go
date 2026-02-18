@@ -29,11 +29,16 @@ var decrypt = &cobra.Command{
 			return
 		}
 		data, err := internal.Decrypt(AbsPath)
-		fileNameLen := len(fileInfo.Name()) - 6
-		fileName := fileInfo.Name()[:fileNameLen]
-		fmt.Println(fileName)		
+
+		fileName := fileInfo.Name()
+		if filepath.Ext(fileName) == ".crypt" {
+			fileName = fileName[:len(fileName)-len(".crypt")]
+		}
+
 		dirPath := filepath.Dir(AbsPath)
 		os.WriteFile(filepath.Join(dirPath,fileName),data,0600)
+		fmt.Println("Decrypted File Successfyully.")
+		fmt.Println("Location:",filepath.Dir(AbsPath))
 	},
 }
 

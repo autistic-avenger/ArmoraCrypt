@@ -39,10 +39,11 @@ var encrypt = &cobra.Command{
 				return
 			}
 			
-			fmt.Println(absWriteFilePath)
+
 			joinedFP := filepath.Join(absWriteFilePath, fileInfo.Name())
 			err = os.WriteFile(joinedFP+".crypt", cypher, 0600)
-
+			fmt.Println("Encrypted File Successfully.")
+			fmt.Println("Location:",filepath.Dir(AbsPath))
 		} else {
 			//if its a dir encryption
 			dir, err := cmd.Flags().GetString("d")
