@@ -63,8 +63,8 @@ var encrypt = &cobra.Command{
 				fmt.Println("Error Getting Dir Abs Path!")
 				return
 			}
-			fmt.Println("DIR:", AbsDir)
-
+			internal.Zip(AbsDir)
+			
 		}
 
 	},
