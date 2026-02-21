@@ -37,7 +37,7 @@ var decrypt = &cobra.Command{
 
 		dirPath := filepath.Dir(AbsPath)
 		os.WriteFile(filepath.Join(dirPath,fileName),data,0600)
-		fmt.Println("Decrypted File Successfyully.")
+		fmt.Println("Decrypted Successfyully.")
 		fmt.Println("Location:",filepath.Dir(AbsPath))
 	},
 }

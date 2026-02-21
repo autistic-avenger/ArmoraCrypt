@@ -64,9 +64,31 @@ var encrypt = &cobra.Command{
 				return
 			}
 			internal.Zip(AbsDir)
-			
-		}
+			fmt.Println("\nZipping Complete!")
+			fmt.Println("ENCRYPTING...")
 
+			zippedDir := AbsDir+".zip"
+
+			zipDirName := filepath.Base(zippedDir)
+			outPutDir := zippedDir[:len(zippedDir)-len(zipDirName)-1]
+
+			crypt,err :=internal.Encrypt(zippedDir)
+			if err != nil {
+				fmt.Println("Error encrypting Folder!")
+				return
+			}
+			err = os.WriteFile(filepath.Join(outPutDir,zipDirName+".crypt"),crypt,0600)
+			if err!=nil{
+				fmt.Println("Error Writing to Folder EncryptionFile!")
+			}
+
+			fmt.Println("Encrypted Folder Created!")
+			fmt.Println("Location:",outPutDir)
+			err = os.Remove(filepath.Join(outPutDir,zipDirName))
+			if err!=nil{
+				fmt.Println("Error deleting file!")
+			}
+		}
 	},
 }
 
