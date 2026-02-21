@@ -11,7 +11,7 @@
 ## TODO
 
 - [x]**Add encryption/decryption functionality**  
-- [x]**Add zipping 
+- [x]**Add zipping**
 - [ ]**unzipping to encrypt entire dirs**
 - [ ]**Figure out a way to get it to dropbox**
 - [ ]**Figure out the downloading and decryption system**
