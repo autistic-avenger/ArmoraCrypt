@@ -44,7 +44,7 @@ func Zip(dirpath string) error {
 			return err
 		}
 		defer fileData.Close()
-		zipFileData,err :=zipWriter.Create(relpath + filepath.Ext(path))
+		zipFileData,err :=zipWriter.Create(relpath)
 		if err !=nil{
 			return nil
 		}
