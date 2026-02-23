@@ -62,7 +62,17 @@ var decrypt = &cobra.Command{
 			fmt.Printf("\rUnzipping...\n")
 			time.Sleep(300*time.Millisecond)
 
-			internal.Unzip(filepath.Join(dirPath,fileName),dirPath)
+			err = internal.Unzip(filepath.Join(dirPath,fileName),dirPath)
+			if err!=nil{
+				fmt.Println("Error unzipping!")
+				return
+			}
+			err = os.Remove(filepath.Join(dirPath,fileName)) 
+			if err!=nil{
+				fmt.Println("Error deleting the zip file")
+				return
+			}
+	
 
 		}
 		

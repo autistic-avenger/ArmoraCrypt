@@ -38,11 +38,6 @@ func Unzip(zipfilePath string,unzipOut string) error {
 			io.Copy(outputFileData,zippedData)
 		}
 	}
-	err = os.Remove(zipfilePath) 
-	if err!=nil{
-		return err
-	}
-	
 
 	return nil
 }
