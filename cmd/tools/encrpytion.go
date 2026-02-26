@@ -32,18 +32,17 @@ var encrypt = &cobra.Command{
 				fmt.Println("Error Getting Abs Path!")
 				return
 			}
-			absWriteFilePath := filepath.Dir(AbsPath) 
+			absWriteFilePath := filepath.Dir(AbsPath)
 			cypher, err := internal.Encrypt(AbsPath)
 			if err != nil {
-				fmt.Println("Error encrypting File!")
+				fmt.Println("Error encrypting File! ", err)
 				return
 			}
-			
 
 			joinedFP := filepath.Join(absWriteFilePath, fileInfo.Name())
 			err = os.WriteFile(joinedFP+".crypt", cypher, 0600)
 			fmt.Println("Encrypted File Successfully.")
-			fmt.Println("Location:",filepath.Dir(AbsPath))
+			fmt.Println("Location:", filepath.Dir(AbsPath))
 		} else {
 			//if its a dir encryption
 			dir, err := cmd.Flags().GetString("d")
@@ -67,25 +66,25 @@ var encrypt = &cobra.Command{
 			fmt.Println("\nZipping Complete!")
 			fmt.Println("ENCRYPTING...")
 
-			zippedDir := AbsDir+".zip"
+			zippedDir := AbsDir + ".zip"
 
 			zipDirName := filepath.Base(zippedDir)
 			outPutDir := zippedDir[:len(zippedDir)-len(zipDirName)-1]
 
-			crypt,err :=internal.Encrypt(zippedDir)
+			crypt, err := internal.Encrypt(zippedDir)
 			if err != nil {
 				fmt.Println("Error encrypting Folder!")
 				return
 			}
-			err = os.WriteFile(filepath.Join(outPutDir,zipDirName+".crypt"),crypt,0600)
-			if err!=nil{
+			err = os.WriteFile(filepath.Join(outPutDir, zipDirName+".crypt"), crypt, 0600)
+			if err != nil {
 				fmt.Println("Error Writing to Folder EncryptionFile!")
 			}
 
 			fmt.Println("Encrypted Folder Created!")
-			fmt.Println("Location:",outPutDir)
-			err = os.Remove(filepath.Join(outPutDir,zipDirName))
-			if err!=nil{
+			fmt.Println("Location:", outPutDir)
+			err = os.Remove(filepath.Join(outPutDir, zipDirName))
+			if err != nil {
 				fmt.Println("Error deleting file!")
 			}
 		}

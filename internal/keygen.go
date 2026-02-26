@@ -5,21 +5,34 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 )
 
 func Keygen() {
-	AppData := os.Getenv("LOCALAPPDATA")
+	var keyDir, AppData string
+	if runtime.GOOS == "linux" {
+		AppData = os.Getenv("HOME")
+		keyDir = filepath.Join(AppData, ".config", "armoracrypt", "Keys")
+	} else {
+		AppData := os.Getenv("LOCALAPPDATA")
+		keyDir = filepath.Join(AppData, "armoracrypt", "Keys")
+	}
 	if AppData == "" {
 		fmt.Println("Error Getting Appdata dir.")
 		return
 	}
-	keyDir := filepath.Join(AppData, "armoracrypt", "Keys")
 
 	//check if Master key already exist
 	_, err := os.Stat(keyDir)
 	if err == nil {
 		fmt.Println("Master Key [DETECTED]")
 		fmt.Println("Location:", keyDir)
+		data, err := os.ReadFile(keyDir)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Printf("%x", data)
 		return
 	} else {
 		fmt.Println("Master Key [MISSING]")
@@ -33,12 +46,12 @@ func Keygen() {
 	}
 	fmt.Println("Generating Master Key...")
 	//create root Masterkey file
-	if err := os.MkdirAll(keyDir, 0600); err != nil {
+	if err := os.MkdirAll(keyDir, 0755); err != nil {
 		fmt.Printf("error creating key directory: %v", err)
 		return
 	}
 
-	if err := os.WriteFile(keyDir+"/masterkey.bin", key, 0600); err != nil {
+	if err := os.WriteFile(keyDir+"/masterkey.bin", key, 0755); err != nil {
 		fmt.Printf("error writing key file: %v", err)
 		return
 	}
