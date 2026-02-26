@@ -14,7 +14,7 @@ func Keygen() {
 		AppData = os.Getenv("HOME")
 		keyDir = filepath.Join(AppData, ".config", "armoracrypt", "Keys")
 	} else {
-		AppData := os.Getenv("LOCALAPPDATA")
+		AppData = os.Getenv("LOCALAPPDATA")
 		keyDir = filepath.Join(AppData, "armoracrypt", "Keys")
 	}
 	if AppData == "" {
@@ -27,12 +27,6 @@ func Keygen() {
 	if err == nil {
 		fmt.Println("Master Key [DETECTED]")
 		fmt.Println("Location:", keyDir)
-		data, err := os.ReadFile(keyDir)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Printf("%x", data)
 		return
 	} else {
 		fmt.Println("Master Key [MISSING]")
