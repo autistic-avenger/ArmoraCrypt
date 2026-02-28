@@ -15,8 +15,8 @@ var encrypt = &cobra.Command{
 	Short: "Encrypts the Files",
 	Long:  "AES256-GCM based encyption that encrypts the Files",
 	Run: func(cmd *cobra.Command, args []string) {
+		internal.Keygen()
 		fp, err := cmd.Flags().GetString("fp")
-
 		//if its a file encryption
 		if fp != "" {
 			if err != nil {
@@ -79,6 +79,7 @@ var encrypt = &cobra.Command{
 			err = os.WriteFile(filepath.Join(outPutDir, zipDirName+".crypt"), crypt, 0600)
 			if err != nil {
 				fmt.Println("Error Writing to Folder EncryptionFile!")
+				return
 			}
 
 			fmt.Println("Encrypted Folder Created!")
@@ -86,6 +87,7 @@ var encrypt = &cobra.Command{
 			err = os.Remove(filepath.Join(outPutDir, zipDirName))
 			if err != nil {
 				fmt.Println("Error deleting file!")
+				return
 			}
 		}
 	},

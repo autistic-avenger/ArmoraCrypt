@@ -16,6 +16,7 @@ var decrypt = &cobra.Command{
 	Short: "Decrypts the Files",
 	Long:  "AES256-GCM based encyption that decrypts the Files",
 	Run: func(cmd *cobra.Command, args []string) {
+		internal.Keygen()
 		fp, err := cmd.Flags().GetString("fp")
 		if err != nil {
 			fmt.Printf("Error getting fp flag for decryption!")
@@ -47,7 +48,7 @@ var decrypt = &cobra.Command{
 
 		dirPath := filepath.Dir(AbsPath)
 		os.WriteFile(filepath.Join(dirPath,fileName),data,0600)
-		fmt.Println("Decrypted Successfyully.")
+		fmt.Println("Decrypted Successfully.")
 		fmt.Println("Location:",filepath.Dir(AbsPath))
 		
 		//check if its a Folder 
