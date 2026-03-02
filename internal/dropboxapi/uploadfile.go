@@ -21,12 +21,16 @@ func UploadFile(token string, dropboxPath string, localFilePath string) error {
 
 	reqs.Header.Set("Authorization", "Bearer "+token)
 	reqs.Header.Set("Content-Type", "application/octet-stream")
-	reqs.Header.Set("Dropbox-API-Arg", fmt.Sprintf("{\"autorename\":false,\"mode\":\"overwrite\",\"mute\":false,\"path\":\"%s\",\"strict_conflict\":false}", dropboxPath))
+	reqs.Header.Set("Dropbox-API-Arg", fmt.Sprintf("{\"autorename\":false,\"mode\":\"add\",\"mute\":false,\"path\":\"%s\",\"strict_conflict\":false}", dropboxPath))
 
 	client := &http.Client{}
 	resp, err := client.Do(reqs)
 	if err != nil {
 		return err
+	}
+	fmt.Println("Status Code:",resp.StatusCode)
+	if resp.StatusCode!=http.StatusOK{
+		return fmt.Errorf("Failed")
 	}
 	defer resp.Body.Close()
 

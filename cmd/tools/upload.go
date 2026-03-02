@@ -71,10 +71,10 @@ var Upload = &cobra.Command{
 			//token ,relativeDROPPATH,localPATH
 			err = dropboxapi.UploadFile(token, "/ARMORA/FILES/"+fileInfo.Name()+".crypt", Abs+".crypt")
 			if err != nil {
-				fmt.Println("Error Uploading...", err)
+				fmt.Println("Error Uploading...")
 				return
 			}
-			fmt.Println("[UPLOADED SUCCESSFULLY]")
+
 			defer os.Remove(Abs + ".crypt")
 		}
 
