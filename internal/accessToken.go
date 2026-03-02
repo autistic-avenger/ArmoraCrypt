@@ -7,7 +7,7 @@ import (
 	"runtime"
 )
 
-func CheckToken()(string, error) {
+func CheckToken() (string, error) {
 	var tokenDir, AppData string
 	operatingSys := runtime.GOOS
 	if operatingSys == "linux" {
@@ -19,23 +19,23 @@ func CheckToken()(string, error) {
 	}
 
 	var token string
-	_, err := os.Stat(tokenDir+"\\token.bin")
+	_, err := os.Stat(tokenDir + "\\token.bin")
 	if err == nil {
-		byteofToken,_ := os.ReadFile(tokenDir+"\\token.bin")
+		byteofToken, _ := os.ReadFile(tokenDir + "/token.bin")
 		token = string(byteofToken)
 		fmt.Println("Auth-Key [DETECTED]")
-		return token,nil
+		return token, nil
 	} else {
 		fmt.Println("Auth-Key [MISSING]")
 	}
 	fmt.Printf("Enter Your DropBox Auth Key:")
 	fmt.Scan(&token)
 
-	err = os.WriteFile(tokenDir+"\\token.bin",[]byte(token),0755)
-	if err!=nil{
-		return "",err
+	err = os.WriteFile(tokenDir+"/token.bin", []byte(token), 0755)
+	if err != nil {
+		return "", err
 	}
 	fmt.Println("TOKEN STORED!")
-	return token,nil
+	return token, nil
 
 }
