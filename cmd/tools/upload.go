@@ -26,11 +26,15 @@ var Upload = &cobra.Command{
 			fmt.Println("Incorrect PATH")
 			return
 		}
-
 		if info.IsDir(){
 			_,err := exec.Command("armoracrypt", "encrypt", "--d", Abs).Output()
 			if err!=nil{
 				fmt.Println("Error Uploading File")
+				return
+			}
+			token,err := internal.CheckToken()
+			if err!=nil{
+				fmt.Println(err)
 				return
 			}
 			
