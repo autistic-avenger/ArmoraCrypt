@@ -3,6 +3,7 @@ package tools
 import (
 	"armoracrypt/cmd"
 	"armoracrypt/internal"
+	dropboxapi "armoracrypt/internal/dropboxApi"
 	"fmt"
 	"os"
 	"os/exec"
@@ -37,7 +38,16 @@ var Upload = &cobra.Command{
 				fmt.Println(err)
 				return
 			}
-			
+			fileInfo ,_ := os.Stat(Abs)
+			//aPi works:
+			//token ,relativeDROPPATH,localPATH
+
+			err = dropboxapi.UploadFile(token,"/ARMORA/FOLDERS/"+fileInfo.Name()+".zip.crypt",Abs+".zip.crypt")
+			if err!=nil{
+				fmt.Println("Error Uploading...",err)
+				return
+			}
+
 			fmt.Println("[UPLOADED SUCCESSFULLY]")
 			defer os.Remove(Abs+".zip.crypt")
 
@@ -47,6 +57,23 @@ var Upload = &cobra.Command{
 				fmt.Println("Error Uploading File")
 				return
 			}
+
+			token,err := internal.CheckToken()
+			if err!=nil{
+				fmt.Println(err)
+				return
+			}
+			fileInfo ,_ := os.Stat(Abs)
+
+			//aPi works:
+			//token ,relativeDROPPATH,localPATH
+			err = dropboxapi.UploadFile(token,"/ARMORA/FILES/"+fileInfo.Name()+".crypt",Abs+".crypt")
+			if err!=nil{
+				fmt.Println("Error Uploading...",err)
+				return
+			}
+
+
 			
 			fmt.Println("[UPLOADED SUCCESSFULLY]")
 			defer os.Remove(Abs+".crypt")
@@ -59,6 +86,6 @@ var Upload = &cobra.Command{
 } 
 
 func init(){
-	Upload.Flags().String("fp","","Upload to cloud")
+	Upload.Flags().String("fp","/NarendraMODI/ISRAEL","Upload to cloud")
 	cmd.RootCmd.AddCommand(Upload)
 }
