@@ -19,7 +19,7 @@ func CheckToken() (string, error) {
 	}
 
 	var token string
-	_, err := os.Stat(tokenDir + "\\token.bin")
+	_, err := os.Stat(tokenDir + "/token.bin")
 	if err == nil {
 		byteofToken, _ := os.ReadFile(tokenDir + "/token.bin")
 		token = string(byteofToken)

@@ -34,18 +34,18 @@ var Upload = &cobra.Command{
 				fmt.Println("Error Uploading File")
 				return
 			}
-			_, err = internal.CheckToken()
-			if err != nil {
+			token,err := internal.CheckToken()
+			if err!=nil{
 				fmt.Println(err)
 				return
 			}
-			fileInfo ,_ := os.Stat(Abs)
+			fileInfo, _ := os.Stat(Abs)
 			//aPi works:
 			//token ,relativeDROPPATH,localPATH
 
-			err = dropboxapi.UploadFile(token,"/ARMORA/FOLDERS/"+fileInfo.Name()+".zip.crypt",Abs+".zip.crypt")
-			if err!=nil{
-				fmt.Println("Error Uploading...",err)
+			err = dropboxapi.UploadFile(token, "/ARMORA/FOLDERS/"+fileInfo.Name()+".zip.crypt", Abs+".zip.crypt")
+			if err != nil {
+				fmt.Println("Error Uploading...", err)
 				return
 			}
 
@@ -59,31 +59,28 @@ var Upload = &cobra.Command{
 				return
 			}
 
-			token,err := internal.CheckToken()
-			if err!=nil{
+			token, err := internal.CheckToken()
+			if err != nil {
 				fmt.Println(err)
 				return
 			}
-			fileInfo ,_ := os.Stat(Abs)
+			fileInfo, _ := os.Stat(Abs)
 
 			//aPi works:
 			//token ,relativeDROPPATH,localPATH
-			err = dropboxapi.UploadFile(token,"/ARMORA/FILES/"+fileInfo.Name()+".crypt",Abs+".crypt")
-			if err!=nil{
-				fmt.Println("Error Uploading...",err)
+			err = dropboxapi.UploadFile(token, "/ARMORA/FILES/"+fileInfo.Name()+".crypt", Abs+".crypt")
+			if err != nil {
+				fmt.Println("Error Uploading...")
 				return
 			}
-
-
-			
 			fmt.Println("[UPLOADED SUCCESSFULLY]")
-			defer os.Remove(Abs + ".crypt")
+			defer os.Remove(Abs+".crypt")
 		}
 
 	},
 }
 
-func init(){
-	Upload.Flags().String("fp","/NarendraMODI/ISRAEL","Upload to cloud")
+func init() {
+	Upload.Flags().String("fp", "/NarendraMODI/ISRAEL", "Upload to cloud")
 	cmd.RootCmd.AddCommand(Upload)
 }
