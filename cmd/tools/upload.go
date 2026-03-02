@@ -34,9 +34,8 @@ var Upload = &cobra.Command{
 				fmt.Println("Error Uploading File")
 				return
 			}
-
-			token, err := internal.CheckToken()
-			if err != nil {
+			token,err := internal.CheckToken()
+			if err!=nil{
 				fmt.Println(err)
 				return
 			}
@@ -74,8 +73,8 @@ var Upload = &cobra.Command{
 				fmt.Println("Error Uploading...")
 				return
 			}
-
-			defer os.Remove(Abs + ".crypt")
+			fmt.Println("[UPLOADED SUCCESSFULLY]")
+			defer os.Remove(Abs+".crypt")
 		}
 
 	},
