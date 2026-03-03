@@ -23,7 +23,6 @@ func CheckToken() (string, error) {
 	if err == nil {
 		byteofToken, _ := os.ReadFile(tokenDir + "/token.bin")
 		token = string(byteofToken)
-		fmt.Println("Auth-Key [DETECTED]")
 		return token, nil
 	} else {
 		fmt.Println("Auth-Key [MISSING]")
