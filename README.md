@@ -12,7 +12,7 @@
 
 - [x]**Add encryption/decryption functionality**  
 - [x]**Add zipping**
-- [ ]**unzipping to encrypt entire dirs**
-- [ ]**Figure out a way to get it to dropbox**
-- [ ]**Figure out the downloading and decryption system**
+- [x]**unzipping to encrypt entire dirs**
+- [x]**Figure out a way to get it to dropbox**
+- [x]**Figure out the downloading and decryption system**
 - [ ]**FINISH PROJECT**
