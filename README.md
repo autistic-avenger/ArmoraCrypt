@@ -39,6 +39,10 @@ That's it! You're ready to encrypt.
 
 ## Demo
 
+
+https://github.com/user-attachments/assets/5d0e5691-54da-46a3-933c-85bffcdac5e1
+
+
 ##  Usage Guide
 
 ### Basic Commands
