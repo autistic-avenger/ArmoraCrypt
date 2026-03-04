@@ -40,7 +40,7 @@ var encrypt = &cobra.Command{
 			}
 
 			joinedFP := filepath.Join(absWriteFilePath, fileInfo.Name())
-			err = os.WriteFile(joinedFP+".crypt", cypher, 0600)
+			err = os.WriteFile(joinedFP+".crypt", cypher, 0755)
 			fmt.Println("Encrypted File Successfully.")
 			fmt.Println("Location:", filepath.Dir(AbsPath))
 		} else {
@@ -76,7 +76,7 @@ var encrypt = &cobra.Command{
 				fmt.Println("Error encrypting Folder!")
 				return
 			}
-			err = os.WriteFile(filepath.Join(outPutDir, zipDirName+".crypt"), crypt, 0600)
+			err = os.WriteFile(filepath.Join(outPutDir, zipDirName+".crypt"), crypt, 0755)
 			if err != nil {
 				fmt.Println("Error Writing to Folder EncryptionFile!")
 				return

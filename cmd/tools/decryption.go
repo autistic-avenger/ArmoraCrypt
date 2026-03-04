@@ -20,10 +20,10 @@ var decrypt = &cobra.Command{
 		fp, err := cmd.Flags().GetString("fp")
 		if err != nil {
 			fmt.Printf("Error getting fp flag for decryption!")
-			return 
+			return
 		}
 		AbsPath, err := filepath.Abs(fp)
-		if filepath.Ext(AbsPath) != ".crypt"{
+		if filepath.Ext(AbsPath) != ".crypt" {
 			fmt.Println("Not An Encrypted File can't Decrypt!")
 			return
 		}
@@ -37,7 +37,7 @@ var decrypt = &cobra.Command{
 			return
 		}
 		data, err := internal.Decrypt(AbsPath)
-		if err!=nil{
+		if err != nil {
 			return
 		}
 
@@ -47,36 +47,35 @@ var decrypt = &cobra.Command{
 		}
 
 		dirPath := filepath.Dir(AbsPath)
-		os.WriteFile(filepath.Join(dirPath,fileName),data,0600)
+		os.WriteFile(filepath.Join(dirPath, fileName), data, 0755)
 		fmt.Println("Decrypted Successfully.")
-		fmt.Println("Location:",filepath.Dir(AbsPath))
-		
-		//check if its a Folder 
-		isZip := (filepath.Ext(filepath.Join(dirPath,fileName))==".zip")
-		if isZip{ //is a zipped Folder
+		fmt.Println("Location:", filepath.Dir(AbsPath))
+
+		//check if its a Folder
+		isZip := (filepath.Ext(filepath.Join(dirPath, fileName)) == ".zip")
+		if isZip { //is a zipped Folder
 
 			fmt.Println("Zip [Detected]")
 			fmt.Printf("Unzipping.")
-			time.Sleep(300*time.Millisecond)
+			time.Sleep(300 * time.Millisecond)
 			fmt.Printf("\rUnzipping..")
-			time.Sleep(300*time.Millisecond)
+			time.Sleep(300 * time.Millisecond)
 			fmt.Printf("\rUnzipping...\n")
-			time.Sleep(300*time.Millisecond)
+			time.Sleep(300 * time.Millisecond)
 
-			err = internal.Unzip(filepath.Join(dirPath,fileName),dirPath)
-			if err!=nil{
+			err = internal.Unzip(filepath.Join(dirPath, fileName), dirPath)
+			if err != nil {
 				fmt.Println("Error unzipping!")
 				return
 			}
-			err = os.Remove(filepath.Join(dirPath,fileName)) 
-			if err!=nil{
+			err = os.Remove(filepath.Join(dirPath, fileName))
+			if err != nil {
 				fmt.Println("Error deleting the zip file")
 				return
 			}
-	
 
 		}
-		
+
 	},
 }
 
