@@ -18,7 +18,7 @@
 -  **Easy to Use** - Simple CLI commands for all operations
 -  **Multi-Cloud Ready** - Dropbox now, Google Drive & OneDrive coming soon
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Go 1.16** or higher ([Download](https://golang.org/dl/))
@@ -39,7 +39,7 @@ armoracrypt
 
 That's it! You're ready to encrypt.
 
-## 🎥 Demo
+## Demo
 
 ##  Usage Guide
 
@@ -74,7 +74,7 @@ armoracrypt download
 ```
 Retrieve and decrypt files from your Dropbox
 
-## 🔧 Configuration
+## Configuration
 
 ### Setting Up Dropbox Integration
 
