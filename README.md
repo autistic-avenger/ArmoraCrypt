@@ -13,10 +13,8 @@
 -  **AES-256 Encryption** - Military-grade encryption for all file types
 -  **Folder Support** - Automatically zip and encrypt entire directories
 -  **Dropbox Integration** - Seamlessly upload and download encrypted files
--  **Lightning Fast** - Optimized performance for quick operations
 -  **Local Security** - Keys never leave your machine
 -  **Easy to Use** - Simple CLI commands for all operations
--  **Cloud Ready** - Dropbox Upload/Download in just a single command
 
 ## Quick Start
 
