@@ -16,7 +16,7 @@
 -  **Lightning Fast** - Optimized performance for quick operations
 -  **Local Security** - Keys never leave your machine
 -  **Easy to Use** - Simple CLI commands for all operations
--  **Multi-Cloud Ready** - Dropbox now, Google Drive & OneDrive coming soon
+-  **Cloud Ready** - Dropbox Upload/Download in just a single command
 
 ## Quick Start
 
