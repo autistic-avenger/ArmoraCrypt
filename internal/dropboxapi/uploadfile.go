@@ -46,7 +46,7 @@ func UploadFile(token string, dropboxPath string, localFilePath string) error {
 		}
 
 		os.Remove(tokenDir+"/token.bin")
-		internal.CheckToken()
+		token,_ := internal.CheckToken()
 		UploadFile(token,dropboxPath,localFilePath)
 
 	}else if resp.StatusCode != http.StatusOK{
