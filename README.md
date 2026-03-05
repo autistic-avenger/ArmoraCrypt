@@ -25,7 +25,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ArmoraCrypt.git
+git clone https://github.com/autistic-avenger/ArmoraCrypt
 cd ArmoraCrypt
 
 # Install the binary
