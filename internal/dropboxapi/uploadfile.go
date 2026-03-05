@@ -31,10 +31,10 @@ func UploadFile(token string, dropboxPath string, localFilePath string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("Status Code:",resp.StatusCode)
-	if resp.StatusCode == 401{
+	fmt.Println("Status Code:", resp.StatusCode)
+	if resp.StatusCode == 401 {
 		fmt.Println("Your auth key expired..")
-		//reget token 
+		//reget token
 		var tokenDir, AppData string
 		operatingSys := runtime.GOOS
 		if operatingSys == "linux" {
@@ -45,11 +45,14 @@ func UploadFile(token string, dropboxPath string, localFilePath string) error {
 			tokenDir = filepath.Join(AppData, "armoracrypt")
 		}
 
-		os.Remove(tokenDir+"/token.bin")
-		token,_ := internal.CheckToken()
-		UploadFile(token,dropboxPath,localFilePath)
+		os.Remove(tokenDir + "/token.bin")
+		token, _ := internal.CheckToken()
+		UploadFile(token, dropboxPath, localFilePath)
 
-	}else if resp.StatusCode != http.StatusOK{
+	} else if resp.StatusCode == 400 {
+		fmt.Println("Please Allow file read/write in your Dropbox Apps settings!")
+
+	} else if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("Failed.")
 	}
 	defer resp.Body.Close()

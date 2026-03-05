@@ -33,6 +33,15 @@ go install
 
 # Verify installation
 armoracrypt
+
+
+#For Linux run:
+#bash->
+echo 'export PATH=$PATH:/usr/local/go/bin:$(go env GOPATH)/bin' >> ~/.bashrc
+
+#zsh->
+echo 'export PATH=$PATH:/usr/local/go/bin:$(go env GOPATH)/bin' >> ~/.zshrc
+
 ```
 
 That's it! You're ready to encrypt.
